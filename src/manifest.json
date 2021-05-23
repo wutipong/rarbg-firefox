@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "Open Multiple Link",
+  "version": "1.0",
+  "description": "Open Multiple Link.",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+  "page_action": {
+    "default_icon": {
+      "48": "icons/icon48.png"
+    },
+    "show_matches": [
+      "*://rarbgenter.org/torrents.php*",
+      "*://rarbgenter.org/torrent/*"
+    ]
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://rarbgenter.org/torrents.php*"
+      ],
+      "all_frames": true,
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://rarbgenter.org/torrent/*"
+      ],
+      "all_frames": true,
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "tabs"
+  ]
+}

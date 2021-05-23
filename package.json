@@ -1,0 +1,20 @@
+{
+  "name": "firefox-open-multi-link",
+  "version": "1.0.0",
+  "description": "",
+
+  "scripts": {
+    "prebuild": "npx rimraf build && npx rimraf out",
+    "bundle": "parcel build ./src/background.js ./src/content.js --dist-dir ./build",
+    "manifest": "npx copyfiles -u 1 ./src/manifest.json ./build && npx copyfiles -u 1 ./src/images/* ./build",
+    "build": "npm run bundle && npm run manifest",
+    "makexpi": "npx mkdirp out && cd build && bestzip ../out/open-tab.xpi *",
+    "release": "npm run build && npm run makexpi"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.3.1",
+    "webextension-polyfill": "^0.8.0"
+  }
+}

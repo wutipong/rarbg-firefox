@@ -6,3 +6,9 @@ page using page action button.
 
 The keywords must be setup beforehand on the setting page, which contains only one field that expect 
 a list of keyword separated by commas. Spaces are not trimmed.
+
+## Building
+`npm run-script build` will build the project and place the output in `/build` directory under the project. 
+The manifest inside can be used to temporiry load the extension in Firefox.
+
+`npm run-script makexpi` will create xpi file that can be uploaded to the Firefox Addon website.

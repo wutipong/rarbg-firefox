@@ -4,14 +4,20 @@
   "version": "1.0",
   "description": "custom rarbg extension.",
   "icons": {
-    "48": "icons/icon-48.png"
+    "16": "icon.svg",
+    "32": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
   },
   "options_ui": {
     "page": "settings.html"
   },
   "page_action": {
     "default_icon": {
-      "48": "icons/icon48.png"
+      "16": "icon.svg",
+      "32": "icon.svg",
+      "48": "icon.svg",
+      "128": "icon.svg"
     },
     "show_matches": [
       "*://rarbgenter.org/torrents.php*",

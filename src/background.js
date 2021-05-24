@@ -5,7 +5,6 @@ browser.pageAction.onClicked.addListener(onClicked);
 async function onClicked(tab) {
     let resp = await browser.tabs.sendMessage(tab.id, 'getLinks');
 
-    console.log(resp)
     switch (resp.type) {
         case "urls":
             openTabs(tab.id, resp.urls)

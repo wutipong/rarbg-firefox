@@ -11,11 +11,10 @@ function saveOptions(e) {
     e.preventDefault();
 }
 
-function restoreOptions() {
-    var storageItem = browser.storage.local.get('keywords');
-    storageItem.then((res) => {
-        if (res.keywords == null) return
-        const keywordsTxt = document.getElementById('keywords-txt')
-        keywordsTxt.value = res.keywords.join(',');
-    });
+async function restoreOptions() {
+    var res = await browser.storage.local.get('keywords');
+
+    if (res.keywords == null) return
+    const keywordsTxt = document.getElementById('keywords-txt')
+    keywordsTxt.value = res.keywords.join(',');
 }

@@ -1,20 +1,26 @@
 const browser = require('webextension-polyfill')
 
-function listURL(sendResponse) {
+async function listURL() {
     const result = {};
     result.type = "urls"
     result.urls = []
+    
+    let keywords = []
+    let settings = await browser.storage.local.get('keywords');
+    if (settings.keywords != null){
+        keywords = settings.keywords
+    }
 
     document.querySelectorAll('a').forEach(e => {
-        if (!e.text.includes("MetArt")) {
-            return
+        for(let i = 0; i<keywords.length; i++){
+            k = keywords[i]
+            if (e.text.includes(k)){
+                result.urls.push(e.href);
+            }
         }
-        result.urls.push(e.href);
     });
 
-    sendResponse(result);
+    return result
 }
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse)=>{
-    listURL(sendResponse)
-});
+browser.runtime.onMessage.addListener(listURL);

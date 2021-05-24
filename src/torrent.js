@@ -1,6 +1,6 @@
 const browser = require('webextension-polyfill')
 
-function findMagnet(sendResponse) {
+async function findMagnet() {
     let result = {}
     result.type = "magnet"
 
@@ -14,9 +14,7 @@ function findMagnet(sendResponse) {
         }
     }
 
-    sendResponse(result);
+    return result;
 }
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse)=>{
-    findMagnet(sendResponse)
-});
+browser.runtime.onMessage.addListener(findMagnet);

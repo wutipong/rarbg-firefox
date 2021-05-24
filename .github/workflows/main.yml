@@ -1,0 +1,22 @@
+name: main
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm install
+
+      - run: npm run release
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: graphis-download-firefox
+          path: out/rarbg-firefox.xpi
+

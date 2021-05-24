@@ -1,6 +1,6 @@
 {
   "name": "rarbg-firefox",
-  "version": "1.0.0",
+  "version": "21.5.0",
   "description": "custom rarbg extension.",
   "scripts": {
     "prebuild": "npx rimraf build && npx rimraf out",
@@ -11,7 +11,7 @@
     "release": "npm run build && npm run makexpi"
   },
   "author": "Wutipong Wongsakuldej",
-  "license": "",
+  "license": "MIT",
   "devDependencies": {
     "bestzip": "^2.2.0",
     "parcel": "^2.0.0-beta.3.1",

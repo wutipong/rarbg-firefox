@@ -1,6 +1,6 @@
 {
   "name": "rarbg-firefox",
-  "version": "21.5.0",
+  "version": "2021.5.0",
   "description": "custom rarbg extension.",
   "scripts": {
     "prebuild": "npx rimraf build && npx rimraf out",

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "custom rarbg extension",
-  "version": "21.05.0",
+  "version": "2021.5.0",
   "description": "custom rarbg extension.",
   "icons": {
     "16": "icon.svg",

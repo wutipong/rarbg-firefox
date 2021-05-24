@@ -27,7 +27,7 @@
       ],
       "all_frames": true,
       "js": [
-        "content.js"
+        "torrents.js"
       ],
       "run_at": "document_start"
     },
@@ -37,13 +37,13 @@
       ],
       "all_frames": true,
       "js": [
-        "content.js"
+        "torrent.js"
       ],
       "run_at": "document_start"
     }
   ],
   "permissions": [
-    "storage",
-    "tabs"
+    "*://rarbgenter.org/*",
+    "storage"
   ]
 }

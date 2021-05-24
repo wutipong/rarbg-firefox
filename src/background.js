@@ -1,19 +1,16 @@
 const browser = require('webextension-polyfill')
 
-browser.pageAction.onClicked.addListener(() => {
-    browser.tabs.query({ currentWindow: true, active: true }).then(function (tabs) {
-        let tab = tabs[0]
-        if (tab.url.includes("torrents")) {
-            browser.tabs.sendMessage(tab.id, 'getLinks').then((links) => {
-                openTabs(tab.id, links)
-            });
-        } else {
-            browser.tabs.sendMessage(tab.id, 'getMagnet').then((link) => {
-                tabs.update(tab.id, link)
-            });
+browser.pageAction.onClicked.addListener((tab) => {
+    browser.tabs.sendMessage(tab.id, 'getLinks').then((r) => {
+        switch (r.type) {
+            case "urls":
+                openTabs(tab.id, r.urls)
+                break;
+            case "magnet":
+                browser.tabs.update(tab.id, {url: r.url})
+                brak
         }
-    })
-
+    });
 });
 
 function openTabs(from, links) {

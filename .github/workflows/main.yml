@@ -17,6 +17,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: graphis-download-firefox
+          name: rarbg-firefox
           path: out/rarbg-firefox.xpi
 

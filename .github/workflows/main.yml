@@ -20,11 +20,3 @@ jobs:
           name: rarbg-firefox
           path: out/rarbg-firefox.xpi
 
-      - uses: trmcnvn/firefox-addon@v1
-        with:
-          uuid: '{85d27e21-9802-433d-8420-02b2f1d7e7fb}'
-          xpi: out/rarbg-firefox.xpi
-          manifest: build/manifest.json
-          api-key: ${{ secrets.FIREFOX_API_KEY }}
-          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
-

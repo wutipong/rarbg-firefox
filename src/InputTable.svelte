@@ -30,7 +30,7 @@
     <tfoot>
         <tr>
             <th />
-            <th><button on:click={addRow}> add </button></th>
+            <th><button on:click={addRow}>add</button></th>
         </tr>
     </tfoot>
 </table>

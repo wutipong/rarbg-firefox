@@ -4,7 +4,7 @@
   "description": "custom rarbg extension.",
   "scripts": {
     "prebuild": "npx rimraf build && npx rimraf out",
-    "bundle": "parcel build --dist-dir ./build ./src/settings.html ./src/settings2.html ./src/background.ts ./src/torrent.ts ./src/torrents.ts",
+    "bundle": "parcel build --dist-dir ./build ./src/settings.html ./src/background.ts ./src/torrent.ts ./src/torrents.ts",
     "manifest": "npx copyfiles -u 1 ./src/manifest.json ./build && npx copyfiles -u 1 ./src/icon.svg ./build",
     "build": "npm run bundle && npm run manifest",
     "makexpi": "npx mkdirp out && cd build && bestzip ../out/rarbg-firefox.xpi *",

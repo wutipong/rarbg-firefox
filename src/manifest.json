@@ -3,6 +3,11 @@
   "name": "custom rarbg extension",
   "version": "2021.5.1",
   "description": "custom rarbg extension.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{85d27e21-9802-433d-8420-02b2f1d7e7fb}"
+    }
+  },
   "icons": {
     "16": "icon.svg",
     "32": "icon.svg",

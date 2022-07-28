@@ -1,9 +1,9 @@
-document.querySelector("form").addEventListener("submit", saveOptions);
+document.querySelector("form")?.addEventListener("submit", saveOptions);
 document.addEventListener('DOMContentLoaded', restoreOptions);
 
 function saveOptions(e) {
-    const keywordsTxt = document.getElementById('keywords-txt')
-    let arr = keywordsTxt.value.split(',')
+    const keywordsTxt = document.getElementById('keywords-txt') as HTMLInputElement
+    let arr = keywordsTxt?.value.split(',')
 
     browser.storage.local.set({
         keywords: arr
@@ -15,6 +15,6 @@ async function restoreOptions() {
     var res = await browser.storage.local.get('keywords');
 
     if (res.keywords == null) return
-    const keywordsTxt = document.getElementById('keywords-txt')
+    const keywordsTxt = document.getElementById('keywords-txt') as HTMLInputElement
     keywordsTxt.value = res.keywords.join(',');
 }

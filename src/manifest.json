@@ -10,8 +10,9 @@
     "128": "icon.svg"
   },
   "options_ui": {
-    "page": "settings2.html",
-    "browser_style": true
+    "page": "settings.html",
+    "browser_style": true,
+    "open_in_tab": true
   },
   "page_action": {
     "default_icon": {

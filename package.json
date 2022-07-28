@@ -13,8 +13,8 @@
   "author": "Wutipong Wongsakuldej",
   "license": "MIT",
   "devDependencies": {
-    "bestzip": "^2.2.0",
-    "parcel": "^2.0.0-beta.3.1",
-    "webextension-polyfill": "^0.8.0"
+    "bestzip": "^2.2.1",
+    "parcel": "^2.6.2",
+    "webextension-polyfill": "^0.9.0"
   }
 }

@@ -13,13 +13,16 @@
   "author": "Wutipong Wongsakuldej",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.4",
     "@types/webextension-polyfill": "^0.9.0",
     "bestzip": "^2.2.1",
     "parcel": "^2.6.2",
     "parcel-transformer-svelte3-plus": "^0.2.8",
     "svelte": "^3.49.0",
+    "svelte-check": "^2.8.0",
+    "svelte-preprocess": "^4.10.7",
     "typescript": "^4.7.4",
-    "webextension-polyfill": "^0.9.0",
-    "web-ext-types": "^3.2.1"
+    "web-ext-types": "^3.2.1",
+    "webextension-polyfill": "^0.9.0"
   }
 }

@@ -11,9 +11,9 @@ async function listURL() {
         urls: []
     }
 
-    const settings = await browser.storage?.local?.get('keywords');
-    const keywords = settings.keywords ? settings.keywords.split(',') : [];
-    
+    const settings = await browser.storage?.local?.get('keywordsJSON');
+    const keywords = settings.keywordsJSON ? JSON.parse(settings.keywordsJSON.toString()) : [];
+
     document.querySelectorAll('a').forEach(e => {
         for (const k of keywords) {
             if (e.text.includes(k)) {
@@ -25,4 +25,4 @@ async function listURL() {
     return result
 }
 
-browser.runtime.onMessage.addListener(()=>listURL());
+browser.runtime.onMessage.addListener(() => listURL());

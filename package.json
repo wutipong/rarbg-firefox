@@ -4,7 +4,7 @@
   "description": "custom rarbg extension.",
   "scripts": {
     "prebuild": "npx rimraf build && npx rimraf out",
-    "bundle": "parcel build ./src/settings.html ./src/background.js ./src/torrent.js ./src/torrents.js --dist-dir ./build",
+    "bundle": "parcel build ./src/settings.html ./src/background.ts ./src/torrent.ts ./src/torrents.ts --dist-dir ./build",
     "manifest": "npx copyfiles -u 1 ./src/manifest.json ./build && npx copyfiles -u 1 ./src/icon.svg ./build",
     "build": "npm run bundle && npm run manifest",
     "makexpi": "npx mkdirp out && cd build && bestzip ../out/rarbg-firefox.xpi *",
@@ -13,6 +13,7 @@
   "author": "Wutipong Wongsakuldej",
   "license": "MIT",
   "devDependencies": {
+    "@types/webextension-polyfill": "^0.9.0",
     "bestzip": "^2.2.1",
     "parcel": "^2.6.2",
     "webextension-polyfill": "^0.9.0"

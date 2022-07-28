@@ -25,11 +25,13 @@
 </script>
 
 <main>
-    <header>
-        <h1>custom rarbg extension - Configurations</h1>
-    </header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="navbar-brand">RARBG - Configuration</div>
+            <div class="navbar-nav">
+                <button class="btn btn-primary" on:click="{()=>saveOptions()}">Save</button>
+            </div>
+        </div>
+    </nav>
     <InputTable {rows}/>
-    <footer>
-        <button on:click="{()=>saveOptions()}">Save</button>
-    </footer>
 </main>

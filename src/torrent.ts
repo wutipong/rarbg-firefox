@@ -1,4 +1,4 @@
-import { runtime } from 'webextension-polyfill'
+import * as browser from 'webextension-polyfill'
 
 class ResultType {
     type: string;
@@ -6,19 +6,18 @@ class ResultType {
 }
 
 async function findMagnet() {
-    let result: ResultType ={
+    let result: ResultType = {
         type: "magnet",
         url: ""
     }
     const nodes = document.querySelectorAll('a');
-    for (const n of nodes){
+    nodes.forEach((n) => {
         if (n.href?.includes("magnet:?")) {
             result.url = n.href;
-            break;
         }
-    }
+    })
 
     return result;
 }
 
-runtime.onMessage.addListener(findMagnet);
+browser.runtime.onMessage.addListener(findMagnet);

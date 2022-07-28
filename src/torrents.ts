@@ -1,4 +1,4 @@
-import { runtime, storage } from 'webextension-polyfill'
+import * as browser from 'webextension-polyfill'
 
 class ResultType {
     type: string;
@@ -11,8 +11,8 @@ async function listURL() {
         urls: []
     }
 
-    const settings = await storage.local.get('keywords');
-    const keywords = settings.keywords ? settings.keywords : [];
+    const settings = await browser.storage?.local?.get('keywords');
+    const keywords = settings.keywords ? settings.keywords.split(',') : [];
     
     document.querySelectorAll('a').forEach(e => {
         for (const k of keywords) {
@@ -25,4 +25,4 @@ async function listURL() {
     return result
 }
 
-runtime.onMessage.addListener(listURL);
+browser.runtime.onMessage.addListener(()=>listURL());

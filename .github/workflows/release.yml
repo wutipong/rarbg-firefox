@@ -1,9 +1,8 @@
-name: main
+name: release
 on:
-  release:
-    type: [published]
-    branches:
-      - master
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -14,17 +13,37 @@ jobs:
 
       - run: npm install
 
-      - run: npm run release
+      - run: npm run build
 
-      - uses: actions/upload-artifact@v2
+      - name: "web-ext build"
+        id: web-ext-build
+        uses: kewisch/action-web-ext@v1
         with:
-          name: rarbg-firefox
-          path: out/rarbg-firefox.xpi
+          cmd: build
+          source: build
+
+      - name: "web-ext sign"
+        id: web-ext-sign
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: sign
+          source: ${{ steps.web-ext-build.outputs.target }}
+          channel: unlisted
+          apiKey: ${{ secrets.FIREFOX_API_KEY }}
+          apiSecret: ${{ secrets.FIREFOX_API_SECRET }}
+          timeout: 900000
+
+      - name: "Create Release"
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ${{ steps.web-ext-sign.outputs.target }}
 
       - uses: trmcnvn/firefox-addon@v1
         with:
-          uuid: '{85d27e21-9802-433d-8420-02b2f1d7e7fb}'
-          xpi: out/rarbg-firefox.xpi
+          uuid: ${{ secrets.FIREFOX_UUID }}
+          xpi: ${{ steps.web-ext-build.outputs.target }}
           manifest: build/manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
           api-secret: ${{ secrets.FIREFOX_API_SECRET }}

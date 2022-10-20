@@ -21,3 +21,7 @@ async function findMagnet() {
 }
 
 browser.runtime.onMessage.addListener(findMagnet);
+window.onload = async function (e) {
+    const r = await findMagnet()
+    await browser.runtime.sendMessage(undefined, r)
+}

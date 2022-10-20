@@ -13,13 +13,13 @@
   "author": "Wutipong Wongsakuldej",
   "license": "MIT",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.6.2",
+    "@parcel/transformer-sass": "^2.7.0",
     "@rollup/plugin-typescript": "^8.3.4",
     "@types/webextension-polyfill": "^0.9.0",
     "bestzip": "^2.2.1",
     "bootstrap": "^5.2.0",
     "bootswatch": "^5.2.0",
-    "parcel": "^2.6.2",
+    "parcel": "^2.7.0",
     "parcel-transformer-svelte3-plus": "^0.2.8",
     "svelte": "^3.49.0",
     "svelte-check": "^2.8.0",
@@ -29,6 +29,7 @@
     "webextension-polyfill": "^0.9.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5"
+    "@popperjs/core": "^2.11.5",
+    "transmission-promise": "^1.1.5"
   }
 }

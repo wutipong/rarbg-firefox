@@ -27,8 +27,7 @@
       "128": "icon.svg"
     },
     "show_matches": [
-      "*://rarbgenter.org/torrents.php*",
-      "*://rarbgenter.org/torrent/*"
+      "*://rarbgenter.org/torrents.php*"
     ]
   },
   "background": {

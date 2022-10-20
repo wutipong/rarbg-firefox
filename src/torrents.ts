@@ -18,6 +18,7 @@ async function listURL() {
         for (const k of keywords) {
             if (e.text.includes(k)) {
                 result.urls.push(e.href);
+                break;
             }
         }
     });

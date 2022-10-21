@@ -35,7 +35,7 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
             break;
 
         case "test":
-            return await testTransmissionConnection(options);
+            return await testTransmissionConnection(message.options);
     }
 })
 

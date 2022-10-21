@@ -5,7 +5,7 @@
     let errorMessage = ''
 
     async function testConnection() {
-        const result = await browser.runtime.sendMessage({type: "test"})
+        const result = await browser.runtime.sendMessage({type: "test", options: options})
         console.log(result)
         errorMessage = result.message
     }

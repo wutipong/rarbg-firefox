@@ -58,7 +58,8 @@
     }
   ],
   "permissions": [
-    "*://rarbgenter.org/*",
-    "storage"
+    "<all_urls>",
+    "storage",
+    "webRequest"
   ]
 }

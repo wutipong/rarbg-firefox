@@ -1,5 +1,14 @@
 <script lang="ts">
+
     export let options = {}
+
+    let errorMessage = ''
+
+    async function TestConnection() {
+        const result = await browser.runtime.sendMessage({type: "test"})
+        console.log(result)
+        errorMessage = result.message
+    }
 </script>
 
 <form>
@@ -31,3 +40,8 @@
         <input type="text" id="pathInput" class="form-control" bind:value={options.url}>
     </div>
 </form>
+
+<div>
+    <button class="btn btn-info" on:click={TestConnection}>Test Connection</button>
+    <p>{errorMessage}</p>
+</div>

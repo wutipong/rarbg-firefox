@@ -1,50 +1,45 @@
 <script lang="ts">
     import InputTable from "./InputTable.svelte";
-    import TransmissionOption from "./TransmissionOption.svelte";
+    import TransmissionOption from "./TransmissionOptionPanel.svelte";
+    import {onMount} from "svelte";
+    import {LoadTransmissionOption, StoreTransmissionOption, TransmissionOptions} from "./Transmission";
+    import {LoadKeywords, StoreKeywords} from "./Keywords";
 
-    let rows = [];
-    let transmissionOptions = {};
+    let keywords = [];
+    let transmissionOptions: TransmissionOptions
 
-    document.addEventListener("DOMContentLoaded", restoreOptions);
+    onMount(()=>{
+        restoreOptions()
+    })
 
-    function saveOptions() {
-        const keywordsJSON = JSON.stringify(rows);
-        const transmissionOptionsJSON = JSON.stringify(transmissionOptions)
-
-        browser.storage.local.set({
-            keywordsJSON: keywordsJSON,
-            transmissionOptions: transmissionOptionsJSON,
-        });
+    async function saveOptions() {
+        await StoreKeywords(browser.storage.local, keywords)
+        await StoreTransmissionOption(browser.storage.local, transmissionOptions)
     }
 
     async function restoreOptions() {
-        const res = await browser.storage.local.get(["keywordsJSON", "transmissionOptions"]);
+        transmissionOptions = await LoadTransmissionOption(browser.storage.local)
+        keywords = await LoadKeywords(browser.storage.local)
 
-        if (res.keywordsJSON !== undefined && res.keywordsJSON !== null) {
-            const json = res.keywordsJSON.toString();
-            rows = JSON.parse(json);
-        }
-
-        if (res.tranmissionOptions !== undefined && res.transmissionOptions !== null) {
-            const json = res.transmissionOptions.toString();
-            transmissionOptions = JSON.parse(json);
-        }
-
+        console.log(transmissionOptions)
     }
 </script>
 
 <main>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg sticky-top bg-dark">
         <div class="container-fluid">
-            <div class="navbar-brand">RARBG - Configuration</div>
+            <div class="navbar-brand mb-0 h1 text-bg-dark">RARBG - Configuration</div>
             <div class="navbar-nav">
                 <button class="btn btn-primary" on:click="{()=>saveOptions()}">Save</button>
             </div>
         </div>
     </nav>
-    <InputTable bind:rows="{rows}"/>
 
-    <TransmissionOption bind:host="{transmissionOptions.host}" bind:port="{transmissionOptions.port}"
-                        bind:username="{transmissionOptions.username}" bind:password="{transmissionOptions.password}"
-                        bind:ssl="{transmissionOptions.ssl}" bind:path="{transmissionOptions.url}"/>
+    <div class="container-xxl">
+        <h1>Keywords</h1>
+        <InputTable bind:keywords="{keywords}"/>
+
+        <h1>Transmission Options</h1>
+        <TransmissionOption bind:options="{transmissionOptions}"/>
+    </div>
 </main>

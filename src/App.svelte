@@ -20,8 +20,6 @@
     async function restoreOptions() {
         transmissionOptions = await LoadTransmissionOption(browser.storage.local)
         keywords = await LoadKeywords(browser.storage.local)
-
-        console.log(transmissionOptions)
     }
 </script>
 

@@ -1,5 +1,5 @@
 import * as browser from 'webextension-polyfill'
-import {LoadKeywords} from "./Keywords";
+import {loadKeywords} from "./keywords";
 
 class ResultType {
     type: string;
@@ -12,7 +12,7 @@ async function listURL() {
         urls: []
     }
 
-    const keywords = await LoadKeywords(browser.storage.local)
+    const keywords = await loadKeywords(browser.storage.local)
 
     document.querySelectorAll('a').forEach(e => {
         for (const k of keywords) {

@@ -2,24 +2,24 @@
     import InputTable from "./InputTable.svelte";
     import TransmissionOption from "./TransmissionOptionPanel.svelte";
     import {onMount} from "svelte";
-    import {LoadTransmissionOption, StoreTransmissionOption, TransmissionOptions} from "./Transmission";
-    import {LoadKeywords, StoreKeywords} from "./Keywords";
+    import {loadTransmissionOptions, storeTransmissionOption, TransmissionOptions} from "./transmission";
+    import {loadKeywords, storeKeywords} from "./keywords";
 
     let keywords = [];
     let transmissionOptions: TransmissionOptions
 
     onMount(()=>{
-        restoreOptions()
+        loadOptions()
     })
 
     async function saveOptions() {
-        await StoreKeywords(browser.storage.local, keywords)
-        await StoreTransmissionOption(browser.storage.local, transmissionOptions)
+        await storeKeywords(browser.storage.local, keywords)
+        await storeTransmissionOption(browser.storage.local, transmissionOptions)
     }
 
-    async function restoreOptions() {
-        transmissionOptions = await LoadTransmissionOption(browser.storage.local)
-        keywords = await LoadKeywords(browser.storage.local)
+    async function loadOptions() {
+        transmissionOptions = await loadTransmissionOptions(browser.storage.local)
+        keywords = await loadKeywords(browser.storage.local)
     }
 </script>
 

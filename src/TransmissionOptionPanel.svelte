@@ -4,7 +4,7 @@
 
     let errorMessage = ''
 
-    async function TestConnection() {
+    async function testConnection() {
         const result = await browser.runtime.sendMessage({type: "test"})
         console.log(result)
         errorMessage = result.message
@@ -42,6 +42,6 @@
 </form>
 
 <div>
-    <button class="btn btn-info" on:click={TestConnection}>Test Connection</button>
+    <button class="btn btn-info" on:click={testConnection}>Test Connection</button>
     <p>{errorMessage}</p>
 </div>

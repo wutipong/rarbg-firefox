@@ -1,6 +1,6 @@
 const storageKey = "keywordsJSON";
 
-export async function StoreKeywords(storage: browser.storage.StorageArea, rows: string[]) {
+export async function storeKeywords(storage: browser.storage.StorageArea, rows: string[]) {
     const json = JSON.stringify(rows);
 
     await storage.set({
@@ -8,7 +8,7 @@ export async function StoreKeywords(storage: browser.storage.StorageArea, rows: 
     });
 }
 
-export async function LoadKeywords(storage: browser.storage.StorageArea): Promise<string[]> {
+export async function loadKeywords(storage: browser.storage.StorageArea): Promise<string[]> {
     let rows = []
 
     const res = await storage.get(storageKey);

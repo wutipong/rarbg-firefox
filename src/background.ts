@@ -1,7 +1,5 @@
 import {pageAction, tabs, Tabs} from 'webextension-polyfill'
-import {LoadTransmissionOption} from "./Transmission";
-
-const Transmission = require('transmission-promise')
+import {addTorrent, loadTransmissionOptions, testTransmissionConnection} from "./transmission";
 
 pageAction.onClicked.addListener(onClicked);
 
@@ -29,37 +27,16 @@ async function openTabs(from: any, links: any[]) {
 }
 
 browser.runtime.onMessage.addListener(async (message, sender) => {
+    const options = await loadTransmissionOptions(browser.storage.local);
     switch (message.type) {
         case "magnet":
-            await addTorrent(message.url)
+            await addTorrent(options, message.url)
             await tabs.remove(sender.tab.id)
             break;
 
         case "test":
-            return await testConnection();
+            return await testTransmissionConnection(options);
     }
 })
 
-async function testConnection(): Promise<{success: boolean, message: string}>{
-    const options = await LoadTransmissionOption(browser.storage.local);
 
-    try {
-        const transmission = new Transmission(options)
-        await transmission.sessionStats();
-        return {success: true, message: 'success'}
-    } catch (e) {
-        console.log(e)
-        return {success: false, message: e.message}
-    }
-}
-
-async function addTorrent(url: string) {
-    const options = await LoadTransmissionOption(browser.storage.local);
-
-    try {
-        const transmission = new Transmission(options)
-        await transmission.addUrl(url)
-    } catch (e) {
-        console.log(e)
-    }
-}

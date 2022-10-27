@@ -15,6 +15,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
     "@rollup/plugin-typescript": "^8.3.4",
+    "@types/bootstrap": "^5.2.5",
     "@types/webextension-polyfill": "^0.9.0",
     "bestzip": "^2.2.1",
     "bootstrap": "^5.2.0",

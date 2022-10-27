@@ -2,12 +2,24 @@
 
     export let options = {}
 
-    let errorMessage = ''
+    let errorMessage = '<div class="ms-3 text">idle</div>'
+    let waiting = false;
 
     async function testConnection() {
-        const result = await browser.runtime.sendMessage({type: "test", options: options})
+        const p = browser.runtime.sendMessage({type: "test", options: options})
+        waiting = true
+        errorMessage = '<div class="ms-3 text">please wait.</div>'
+        const result = await p
+        waiting = false
+
         console.log(result)
-        errorMessage = result.message
+
+        if (result.success){
+            errorMessage = `<div class="ms-3 text text-success">${result.message}</div>`
+        } else {
+            errorMessage = `<div class="ms-3 text text-danger">${result.message}</div>`
+        }
+
     }
 </script>
 
@@ -41,7 +53,15 @@
     </div>
 </form>
 
-<div>
-    <button class="btn btn-info" on:click={testConnection}>Test Connection</button>
-    <p>{errorMessage}</p>
+<div class="d-flex align-items-baseline">
+    {#if waiting}
+        <button class="btn btn-info disabled">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Working...
+        </button>
+    {:else }
+        <button class="btn btn-info" on:click={testConnection}>Test Connection</button>
+    {/if}
+
+    {@html errorMessage}
 </div>

@@ -22,10 +22,15 @@
         </thead>
         <tbody>
         {#each keywords as r, i}
-            <tr>
+            <tr class="align-middle">
                 <td><input class="form-control" bind:value={r}/></td>
                 <td>
-                    <button class="btn btn-danger" on:click={() => removeRow(i)}>-</button>
+                    <button class="btn btn-danger" on:click={() => removeRow(i)}>
+                    <span>
+                        <i class="bi bi-dash-square"></i>
+                        &nbsp;Remove
+                    </span>
+                    </button>
                 </td>
             </tr>
         {/each}
@@ -34,7 +39,11 @@
         <tr>
             <th>&nbsp;</th>
             <th>
-                <button class="btn btn-success" on:click={addRow}>+</button>
+                <button class="btn btn-success" on:click={addRow}><span>
+                    <i class="bi bi-plus-square"></i>
+                    &nbsp;Add
+                    </span>
+                </button>
             </th>
         </tr>
         </tfoot>
